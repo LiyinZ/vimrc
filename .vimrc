@@ -30,6 +30,7 @@ if has('python') || has('python3')
   Plug 'SirVer/UltiSnips'           " snippet plugin
   Plug 'honza/vim-snippets'         " preconfigured snippet package
 endif
+Plug 'mattn/emmet-vim'              " vim emmet
 
 " *SYNTAX PLUGINS*
 Plug 'plasticboy/vim-markdown'      " markdown
@@ -195,6 +196,12 @@ nnoremap <Down> :echoe "Use j"<CR>
 " NORMAL MAPS {{{
 " ---------------------------------------------------------------------------
 
+" F9 to toggle paste mode
+set pastetoggle=<F9>
+
+" vim paste
+noremap <C-p> "+p
+
 " habits
 inoremap <C-a> <Home>
 cnoremap <C-a> <Home>
@@ -314,6 +321,11 @@ nnoremap <Leader>i :IndentLinesToggle<CR>
 " nnoremap <Leader>e :Errors<CR>
 " reset Syntastic (clears errors)
 " nnoremap <Leader>r :SyntasticReset<CR>
+" }}}
+
+" Vim emmet {{{
+" redefine vim emmet trigger key
+let g:user_emmet_leader_key='<C-Z>'
 " }}}
 
 " }}}
