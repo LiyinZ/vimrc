@@ -44,7 +44,6 @@ Plug 'Yggdroot/indentLine'          " shows indents made of spaces
 
 call plug#end()
 
-" }}}
 
 
 " }}}
@@ -102,6 +101,12 @@ set expandtab
 
 set textwidth=80    " Make it obvious where 80 characters is
 set colorcolumn=+1
+
+" indent/format settings for different file types
+augroup filetype_specific
+  au!
+  au FileType vim  :setlocal ts=2 sts=0 sw=2 et fdm=marker fdl=0
+augroup END
 
 " last knwon cursor, auto markdown
 " {{{
