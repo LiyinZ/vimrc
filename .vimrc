@@ -30,7 +30,8 @@ if has('python') || has('python3')
   Plug 'SirVer/UltiSnips'           " snippet plugin
   Plug 'honza/vim-snippets'         " preconfigured snippet package
 endif
-Plug 'mattn/emmet-vim'              " vim emmet
+Plug 'mattn/emmet-vim'              " emmet
+Plug 'terryma/vim-multiple-cursors' " multiple cursor
 
 " *SYNTAX PLUGINS*
 Plug 'plasticboy/vim-markdown'      " markdown
@@ -162,7 +163,7 @@ nnoremap Y y$
 nnoremap U <C-r>
 
 " ctrl d toggle between shell and vim
-noremap <C-d> :sh<cr>
+nnoremap <C-z> :sh<cr>
 
 " [S]plit line (sister to [J]oin lines)
 " nnoremap S i<CR><Esc>^mwgk:silent! s/\v +$//<CR>:noh<CR>
@@ -227,8 +228,9 @@ let mapleader = " "     " space leader
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" write file
+" write file / all files
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>W :wa<CR>
 
 " open vimrc
 nnoremap <Leader>v :e $MYVIMRC<CR>
@@ -323,10 +325,10 @@ nnoremap <Leader>i :IndentLinesToggle<CR>
 " nnoremap <Leader>r :SyntasticReset<CR>
 " }}}
 
-" Vim emmet {{{
-" redefine vim emmet trigger key
-let g:user_emmet_leader_key='<C-Z>'
-" }}}
+" vim-multiple-cursors {{{
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-u>'
+
 
 " }}}
 " ===========================================================================
