@@ -13,7 +13,7 @@ call plug#begin()
 " *PRIMARY PLUGINS*
 Plug 'tpope/vim-sensible'           " one step above 'nocompatible' mode
 Plug 'tpope/vim-surround'           " surroundings manipulation
-Plug 'tpope/vim-fugitive'           " Git integration
+" Plug 'tpope/vim-fugitive'           " Git integration
 " Plug 'tpope/vim-unimpaired'         " many helpful mappings
 Plug 'tpope/vim-commentary'         " easier commenting
 " Plug 'scrooloose/Syntastic'         " real time error checking
@@ -81,6 +81,13 @@ set t_Co=256     " 256 colors, please
 colorscheme default
 " colorscheme of choice
 silent! colorscheme hybrid_material
+
+" highlight cursor line on active window
+augroup CursorLine
+au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 
 " }}}
@@ -219,6 +226,10 @@ nnoremap <Leader>V :tabnew $MYVIMRC<CR>
 nnoremap <Leader>b :ls<CR>:b<Space>
 nnoremap <Leader>B :ls<CR>:bd!<Space>
 
+" quick all windows
+nnoremap <Leader>Q :qa<CR>
+
+
 " }}}
 " ---------------------------------------------------------------------------
 " COMMAND ALIASES {{{
@@ -239,14 +250,7 @@ cabbrev bdall 0,999bd!
 " ===========================================================================
 
 " Fugitive {{{
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gD :Gdiff HEAD<CR>
-nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>ga. :Git add .<CR>
-nnoremap <Leader>glg :Git log<CR>
-nnoremap <Leader>gp :Git push<CR>
-nnoremap <Leader>gl :Git pull<CR>
+" don't need them for now since i use ctrl d switch to shell
 " }}}
 
 " CtrlP {{{
