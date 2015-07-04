@@ -1,6 +1,6 @@
 " Author: Slevin Zhang <slevinz@outlook.com>
 " Source: https://github.com/LiyinZ/vimrc
-" Inspirations: 'AssailantLF/vimrc', 'thoughtbot/dotfiles', /r/vim
+" Inspired By: 'AssailantLF/vimrc', 'thoughtbot/dotfiles', /r/vim
 
 
 " ===========================================================================
@@ -153,8 +153,8 @@ augroup END
 " REMAPS OF DEFAULTS {{{
 " ---------------------------------------------------------------------------
 
-" K for kill window
-noremap K <c-W>c
+" ctrl k for kill window
+noremap <C-k> <c-W>c
 
 " Y yanks until EOL, more like D and C
 nnoremap Y y$
@@ -165,8 +165,15 @@ nnoremap U <C-r>
 " ctrl d toggle between shell and vim
 nnoremap <C-z> :sh<cr>
 
+" use ctrl j for Join line
+noremap <C-j> J
+
 " [S]plit line (sister to [J]oin lines)
-" nnoremap S i<CR><Esc>^mwgk:silent! s/\v +$//<CR>:noh<CR>
+nnoremap S i<CR><Esc>^mwgk:silent! s/\v +$//<CR>:noh<CR>
+
+" big J / K travel 10 lines
+noremap J 10j
+noremap K 10k
 
 " qq to record, Q to replay
 " nnoremap Q @q
@@ -177,15 +184,15 @@ noremap k gk
 noremap gj j
 noremap gk k
 
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+" arrow keys for page scrolling
+nnoremap <Left> <C-b>
+nnoremap <Right> <C-f>
+nnoremap <Up> <C-u>
+nnoremap <Down> <C-d>
 
 " { and } skip over closed folds
-" nnoremap <expr> } foldclosed(search('^$', 'Wn')) == -1 ? "}" : "}j}"
-" nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"
+nnoremap <expr> } foldclosed(search('^$', 'Wn')) == -1 ? "}" : "}j}"
+nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"
 
 " jump to the end of pasted text
 " useful for pasting multi-lines of text
@@ -209,9 +216,9 @@ cnoremap <C-a> <Home>
 inoremap <C-e> <End>
 cnoremap <C-e> <End>
 
-" convenient page scrolling
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
+" convenient page scrolling *no page scrolling for now*
+" 
+" 
 
 " circular windows navigation
 nnoremap <Tab>   <c-W>w
@@ -328,7 +335,7 @@ nnoremap <Leader>i :IndentLinesToggle<CR>
 " vim-multiple-cursors {{{
 let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-u>'
-
+" }}}
 
 " }}}
 " ===========================================================================
