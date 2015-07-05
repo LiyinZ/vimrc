@@ -34,7 +34,7 @@ Plug 'mattn/emmet-vim'              " emmet
 Plug 'terryma/vim-multiple-cursors' " multiple cursor
 
 " *SYNTAX PLUGINS*
-Plug 'plasticboy/vim-markdown'      " markdown
+" Plug 'plasticboy/vim-markdown'      " markdown
 Plug 'digitaltoad/vim-jade'         " jade template
 Plug 'wavded/vim-stylus'            " stylus syntax
 
@@ -215,10 +215,6 @@ inoremap <C-a> <Home>
 cnoremap <C-a> <Home>
 inoremap <C-e> <End>
 cnoremap <C-e> <End>
-
-" convenient page scrolling *no page scrolling for now*
-" 
-" 
 
 " circular windows navigation
 nnoremap <Tab>   <c-W>w
