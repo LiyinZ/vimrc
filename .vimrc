@@ -174,9 +174,18 @@ nnoremap S i<CR><Esc>^mwgk:silent! s/\v +$//<CR>:noh<CR>
 " big J / K travel 10 lines
 noremap J 10j
 noremap K 10k
+noremap ∆ <C-d>
+noremap ˚ <C-u>
+
+" quick go to line
+noremap - gg
+nnoremap <CR> G
 
 " qq to record, Q to replay
-" nnoremap Q @q
+nnoremap Q @q
+
+" alt x save and quit all
+nnoremap ≈ :xa<CR>
 
 " move by wrapped lines instead of line numbers
 noremap j gj
@@ -184,11 +193,11 @@ noremap k gk
 noremap gj j
 noremap gk k
 
-" arrow keys for page scrolling
+" Left right flipping pages, remap less used keys
 nnoremap <Left> <C-b>
 nnoremap <Right> <C-f>
-nnoremap <Up> <C-u>
-nnoremap <Down> <C-d>
+nnoremap <Up> -
+nnoremap <Down> +
 
 " { and } skip over closed folds
 nnoremap <expr> } foldclosed(search('^$', 'Wn')) == -1 ? "}" : "}j}"
