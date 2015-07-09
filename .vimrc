@@ -40,6 +40,7 @@ Plug 'wavded/vim-stylus'            " stylus syntax
 
 " *AESTHETIC PLUGINS*
 Plug 'kristijanhusak/vim-hybrid-material' " material theme
+" Plug 'NLKNguyen/papercolor-theme'   " paper theme dark & light
 Plug 'itchyny/lightline.vim'        " better looking UI
 " Plug 'mhinz/vim-Startify'           " nice startup screen
 Plug 'Yggdroot/indentLine'          " shows indents made of spaces
@@ -196,8 +197,8 @@ noremap gk k
 " Left right flipping pages, remap less used keys
 nnoremap <Left> <C-b>
 nnoremap <Right> <C-f>
-nnoremap <Up> -
-nnoremap <Down> +
+nnoremap <Up> <C-u>
+nnoremap <Down> <C-d>
 
 " { and } skip over closed folds
 nnoremap <expr> } foldclosed(search('^$', 'Wn')) == -1 ? "}" : "}j}"
@@ -249,7 +250,6 @@ nnoremap <Leader>v :e $MYVIMRC<CR>
 nnoremap <Leader>V :tabnew $MYVIMRC<CR>
 
 " quickly manage buffers
-nnoremap <Leader>b :ls<CR>:b<Space>
 nnoremap <Leader>B :ls<CR>:bd!<Space>
 
 " quick all windows
@@ -304,13 +304,6 @@ let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 " open a NERDTree automatically when vim starts up
 autocmd vimenter * NERDTree
-" open a NERDTree automatically when vim starts up if no files were specified
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" close vim if the only window left open is a NERDTree
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" Set width
-let g:NERDTreeWinSize = 40
 " NERDTree Toggle shortcut
 map <C-n> :NERDTreeToggle<CR>
 
