@@ -178,9 +178,13 @@ noremap K 10k
 noremap ∆ <C-d>
 noremap ˚ <C-u>
 
-" quick go to line
+" big H / L to beginning / end of line, use Leader instead
+noremap H ^
+noremap L $
+
+" - quick go to line, Enter for EOL
 noremap - gg
-nnoremap <CR> G
+nnoremap <CR> G$
 
 " qq to record, Q to replay
 nnoremap Q @q
@@ -237,6 +241,10 @@ nnoremap <Backspace> <c-W>W
 " ---------------------------------------------------------------------------
 
 let mapleader = " "     " space leader
+
+" Leader h / l for beginning / end of line
+noremap <leader>h H
+noremap <leader>l L
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
