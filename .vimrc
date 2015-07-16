@@ -82,7 +82,7 @@ set t_Co=256     " 256 colors, please
 " fallback default colorscheme
 colorscheme default
 " colorscheme of choice
-silent! colorscheme hybrid_material
+silent! colorscheme hybrid_reverse
 
 " highlight cursor line on active window
 augroup CursorLine
@@ -178,10 +178,6 @@ noremap K 10k
 noremap ∆ <C-d>
 noremap ˚ <C-u>
 
-" big H / L to beginning / end of line, use Leader instead
-noremap H ^
-noremap L $
-
 " - quick go to line, Enter for EOL
 noremap - gg
 nnoremap <CR> G$
@@ -226,9 +222,7 @@ noremap <C-p> "+p
 
 " habits
 inoremap <C-a> <Home>
-cnoremap <C-a> <Home>
 inoremap <C-e> <End>
-cnoremap <C-e> <End>
 
 " circular windows navigation
 nnoremap <Tab>   <c-W>w
@@ -243,8 +237,8 @@ nnoremap <Backspace> <c-W>W
 let mapleader = " "     " space leader
 
 " Leader h / l for beginning / end of line
-noremap <leader>h H
-noremap <leader>l L
+noremap <leader>h ^
+noremap <leader>l $
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
@@ -313,7 +307,9 @@ let g:loaded_netrwPlugin = 1
 " open a NERDTree automatically when vim starts up
 autocmd vimenter * NERDTree
 " NERDTree Toggle shortcut
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR><C-w>=
+" show line number
+let NERDTreeShowLineNumbers=1
 
 " vim-easy-align {{{
 " Start interactive EasyAlign in visual mode (e.g. vipga)
