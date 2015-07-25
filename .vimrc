@@ -13,30 +13,33 @@ call plug#begin()
 " *PRIMARY PLUGINS*
 Plug 'tpope/vim-sensible'           " one step above 'nocompatible' mode
 Plug 'tpope/vim-surround'           " surroundings manipulation
-" Plug 'tpope/vim-fugitive'           " Git integration
-" Plug 'tpope/vim-unimpaired'         " many helpful mappings
 Plug 'tpope/vim-commentary'         " easier commenting
-" Plug 'scrooloose/Syntastic'         " real time error checking
+Plug 'scrooloose/Syntastic'         " real time error checking
 Plug 'kien/CtrlP.vim'               " fuzzy file/buffer search
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/vim-easy-align'      " text alignment plugin
-" Plug 'junegunn/vim-github-dashboard'" browse GitHub events on vim
 Plug 'junegunn/goyo.vim'            " distraction free text editing
 Plug 'tommcdo/vim-exchange'         " easy text exchange for vim
-" Plug 'wellle/targets.vim'           " new and improved text objects
-" Plug 'ervandew/supertab'            " tab auto completion
+Plug 'ervandew/supertab'            " tab auto completion
 if has('python') || has('python3')
   Plug 'SirVer/UltiSnips'           " snippet plugin
   Plug 'honza/vim-snippets'         " preconfigured snippet package
 endif
 Plug 'mattn/emmet-vim'              " emmet
 Plug 'terryma/vim-multiple-cursors' " multiple cursor
+Plug 'Raimondi/delimitMate'         " closing brackets
+" Plug 'Valloric/YouCompleteMe'       " code completion engine
+" Plug 'wellle/targets.vim'           " new and improved text objects
+" Plug 'junegunn/vim-github-dashboard'" browse GitHub events on vim
+" Plug 'tpope/vim-fugitive'           " Git integration
+" Plug 'tpope/vim-unimpaired'         " many helpful mappings
 
 " *SYNTAX PLUGINS*
 " Plug 'plasticboy/vim-markdown'      " markdown
 Plug 'digitaltoad/vim-jade'         " jade template
 Plug 'wavded/vim-stylus'            " stylus syntax
+Plug 'jelera/vim-javascript-syntax' " Enhanced JS
 
 " *AESTHETIC PLUGINS*
 Plug 'kristijanhusak/vim-hybrid-material' " material theme
@@ -178,6 +181,10 @@ noremap K 10k
 noremap ∆ <C-d>
 noremap ˚ <C-u>
 
+" big H / L to beginning / end of line, use Leader instead
+noremap H ^
+noremap L $
+
 " - quick go to line, Enter for EOL
 noremap - gg
 nnoremap <CR> G$
@@ -237,8 +244,8 @@ nnoremap <Backspace> <c-W>W
 let mapleader = " "     " space leader
 
 " Leader h / l for beginning / end of line
-noremap <leader>h ^
-noremap <leader>l $
+noremap <leader>h H
+noremap <leader>l L
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
@@ -337,6 +344,13 @@ nnoremap <Leader>i :IndentLinesToggle<CR>
 " vim-multiple-cursors {{{
 let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-u>'
+" }}}
+
+" delimitMate {{{
+" new line for closing brackets
+inoremap <C-o> <CR><Esc>O
+" cancel
+inoremap <C-c> <Right><backspace>
 " }}}
 
 " }}}
