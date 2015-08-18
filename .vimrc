@@ -29,6 +29,8 @@ endif
 Plug 'mattn/emmet-vim'              " emmet
 Plug 'terryma/vim-multiple-cursors' " multiple cursor
 Plug 'Raimondi/delimitMate'         " closing brackets
+Plug 'lfilho/cosco.vim'             " smart comma, semicolon
+Plug 'justinmk/vim-sneak'           " slim easy motion
 " Plug 'Valloric/YouCompleteMe'       " code completion engine
 " Plug 'wellle/targets.vim'           " new and improved text objects
 " Plug 'junegunn/vim-github-dashboard'" browse GitHub events on vim
@@ -157,8 +159,8 @@ augroup END
 " REMAPS OF DEFAULTS {{{
 " ---------------------------------------------------------------------------
 
-" ctrl k for kill window
-noremap <C-k> <c-W>c
+" ctrl k for kill window (disabled, use macvim <D-w>)
+" noremap <C-k> <c-W>c
 
 " Y yanks until EOL, more like D and C
 nnoremap Y y$
@@ -167,13 +169,13 @@ nnoremap Y y$
 nnoremap U <C-r>
 
 " ctrl d toggle between shell and vim
-nnoremap <C-z> :sh<cr>
+" nnoremap <C-z> :sh<cr>
 
 " use ctrl j for Join line
 noremap <C-j> J
 
 " [S]plit line (sister to [J]oin lines)
-nnoremap S i<CR><Esc>^mwgk:silent! s/\v +$//<CR>:noh<CR>
+nnoremap <C-s> i<CR><Esc>^mwgk:silent! s/\v +$//<CR>:noh<CR>
 
 " big J / K travel 10 lines
 noremap J 10j
@@ -234,6 +236,10 @@ inoremap <C-e> <End>
 " circular windows navigation
 nnoremap <Tab>   <c-W>w
 nnoremap <Backspace> <c-W>W
+
+" insert current datetime
+nnoremap <F5> "=strftime("%c")<CR>P
+inoremap <F5> <C-R>=strftime("%c")<CR>
 
 
 " }}}
@@ -316,7 +322,13 @@ autocmd vimenter * NERDTree
 " NERDTree Toggle shortcut
 map <C-n> :NERDTreeToggle<CR><C-w>=
 " show line number
-let NERDTreeShowLineNumbers=1
+" let NERDTreeShowLineNumbers=1
+" map key help from ? to ÷
+let NERDTreeMapHelp='÷'
+let NERDTreeMapJumpLastChild='gj'
+let NERDTreeMapJumpFirstChild='gk'
+let NERDTreeMapOpenVSplit='<C-v>'
+" }}}
 
 " vim-easy-align {{{
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -346,12 +358,42 @@ let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-u>'
 " }}}
 
-" delimitMate {{{
-" new line for closing brackets
-inoremap <C-o> <CR><Esc>O
-" cancel
-inoremap <C-c> <Right><backspace>
+" vim-commentary shortcut {{{
+nnoremap <C-c> gcc
+vnoremap <C-c> gc
 " }}}
 
+" delimitMate {{{
+" auto new line space expansion
+let delimitMate_expand_space=1
+let delimitMate_expand_cr=1
+" semicolon end 
+inoremap <C-l> <C-o>A;<Esc>
+" }}}
+
+" cosco.vim {{{
+" ctrl z for smart semi colons
+autocmd FileType javascript,css nnoremap <silent> <C-z> :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css inoremap <silent> <C-z> <c-o>:call cosco#commaOrSemiColon()<CR>
+" }}}
+
+" vim-sneak {{{
+" Emulate easyMotion
+let g:sneak#streak = 1
+" }}}
+
+" }}}
+" ===========================================================================
+" GUI ONLY {{{
+" ===========================================================================
+if has('gui_running')
+  set relativenumber
+  " More comfortable scroll
+  noremap <D-j> <C-d>
+  noremap <D-k> <C-u>
+  " Sublime style comment
+  noremap <D-/> :Commentary<CR>
+
+endif
 " }}}
 " ===========================================================================
