@@ -16,6 +16,7 @@ Plug 'tpope/vim-surround'           " surroundings manipulation
 Plug 'tpope/vim-commentary'         " easier commenting
 Plug 'scrooloose/Syntastic'         " real time error checking
 Plug 'ctrlpvim/ctrlp.vim'               " fuzzy file/buffer search
+Plug 'FelikZ/ctrlp-py-matcher'      " Faster ctrl p matcher with Python
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/vim-easy-align'      " text alignment plugin
@@ -47,7 +48,6 @@ Plug 'jelera/vim-javascript-syntax' " Enhanced JS
 Plug 'kristijanhusak/vim-hybrid-material' " material theme
 " Plug 'NLKNguyen/papercolor-theme'   " paper theme dark & light
 Plug 'itchyny/lightline.vim'        " better looking UI
-" Plug 'mhinz/vim-Startify'           " nice startup screen
 Plug 'Yggdroot/indentLine'          " shows indents made of spaces
 
 call plug#end()
@@ -69,7 +69,6 @@ set ignorecase       " search isn't case sensitive
 set lazyredraw       " redraw the screen less often
 
 set number
-set relativenumber
 set numberwidth=5
 
 set splitbelow  " Open new split panes to right and bottom,
@@ -269,6 +268,7 @@ nnoremap <Leader>V :tabnew $MYVIMRC<CR>
 nnoremap <Leader>B :ls<CR>:bd!<Space>
 
 " quick all windows
+nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :qa<CR>
 
 
@@ -302,6 +302,8 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:ctrlp_show_hidden = 1
 " change default CtrlP mapping
 let g:ctrlp_map = '<Leader>p'
+" Use python matcher
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
 " specific directory search
 nnoremap <Leader><C-p> :CtrlP<Space>
 " access recent files and buffers
@@ -322,13 +324,19 @@ let g:loaded_netrwPlugin = 1
 autocmd vimenter * NERDTree
 " NERDTree Toggle shortcut
 map <C-n> :NERDTreeToggle<CR><C-w>=
-" show line number
-" let NERDTreeShowLineNumbers=1
+" Auto delete buffer
+let NERDTreeAutoDeleteBuffer=1
+" Auto CWD
+let NERDTreeChDirMode=1
 " map key help from ? to ÷
 let NERDTreeMapHelp='÷'
+" so that I can use default J/K within NT
 let NERDTreeMapJumpLastChild='gj'
 let NERDTreeMapJumpFirstChild='gk'
+" so that I can use vim-sneak within NT
 let NERDTreeMapOpenVSplit='<C-v>'
+" New tab to open new project
+noremap <Leader>n :tabe<CR>:NERDTree 
 " }}}
 
 " vim-easy-align {{{
@@ -378,11 +386,13 @@ autocmd FileType javascript,css inoremap <silent> <C-z> <c-o>:call cosco#commaOr
 let g:sneak#streak=1
 " }}}
 
+
 " }}}
 " ===========================================================================
 " GUI ONLY {{{
 " ===========================================================================
 if has('gui_running')
+  set relativenumber
   " More comfortable scroll
   noremap <D-j> <C-d>
   noremap <D-k> <C-u>
