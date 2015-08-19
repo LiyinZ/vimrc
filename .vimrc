@@ -15,7 +15,7 @@ Plug 'tpope/vim-sensible'           " one step above 'nocompatible' mode
 Plug 'tpope/vim-surround'           " surroundings manipulation
 Plug 'tpope/vim-commentary'         " easier commenting
 Plug 'scrooloose/Syntastic'         " real time error checking
-Plug 'kien/CtrlP.vim'               " fuzzy file/buffer search
+Plug 'ctrlpvim/ctrlp.vim'               " fuzzy file/buffer search
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/vim-easy-align'      " text alignment plugin
@@ -227,8 +227,8 @@ nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"
 " F9 to toggle paste mode
 set pastetoggle=<F9>
 
-" vim paste
-noremap <C-p> "+p
+" vim paste " use cmd-v in macvim
+" noremap <C-p> "+p
 
 " habits
 inoremap <C-a> <Home>
