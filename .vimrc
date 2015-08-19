@@ -69,6 +69,7 @@ set ignorecase       " search isn't case sensitive
 set lazyredraw       " redraw the screen less often
 
 set number
+set relativenumber
 set numberwidth=5
 
 set splitbelow  " Open new split panes to right and bottom,
@@ -358,11 +359,6 @@ let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-u>'
 " }}}
 
-" vim-commentary shortcut {{{
-nnoremap <C-c> gcc
-vnoremap <C-c> gc
-" }}}
-
 " delimitMate {{{
 " auto new line space expansion
 let delimitMate_expand_space=1
@@ -379,7 +375,7 @@ autocmd FileType javascript,css inoremap <silent> <C-z> <c-o>:call cosco#commaOr
 
 " vim-sneak {{{
 " Emulate easyMotion
-let g:sneak#streak = 1
+let g:sneak#streak=1
 " }}}
 
 " }}}
@@ -387,7 +383,6 @@ let g:sneak#streak = 1
 " GUI ONLY {{{
 " ===========================================================================
 if has('gui_running')
-  set relativenumber
   " More comfortable scroll
   noremap <D-j> <C-d>
   noremap <D-k> <C-u>
