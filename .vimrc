@@ -36,7 +36,7 @@ Plug 'unblevable/quick-scope'       " helpful highlights for fFtT
 " Plug 'Valloric/YouCompleteMe'       " code completion engine
 " Plug 'wellle/targets.vim'           " new and improved text objects
 " Plug 'junegunn/vim-github-dashboard'" browse GitHub events on vim
-" Plug 'tpope/vim-fugitive'           " Git integration
+Plug 'tpope/vim-fugitive'           " Git integration
 " Plug 'tpope/vim-unimpaired'         " many helpful mappings
 
 " *SYNTAX PLUGINS*
@@ -322,6 +322,8 @@ map <C-_> :NERDTreeToggle<CR><C-w>=
 let NERDTreeAutoDeleteBuffer=1
 " Auto CWD
 let NERDTreeChDirMode=1
+" Show hidden file by default
+let NERDTreeShowHidden=1
 " map key help from ? to ÷
 let NERDTreeMapHelp='÷'
 " so that I can use default J/K within NT
@@ -405,9 +407,17 @@ for i in g:qs_enable_char_list
 endfor
 " }}}
 
-for i in g:qs_enable_char_list
-	execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
-endfor
+" Fugitive {{{
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gD :Gdiff HEAD<cr>
+nnoremap <leader>ga. :Git add .<cr>
+nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gl :Git log
+nnoremap <leader>gp :Git push<cr>
+nnoremap <leader>gw :Gwrite<cr>
+nnoremap <leader>gr :Gremove<cr>
+" }}}
 
 " }}}
 " ===========================================================================
