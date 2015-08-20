@@ -323,7 +323,7 @@ let g:loaded_netrwPlugin = 1
 " open a NERDTree automatically when vim starts up
 autocmd vimenter * NERDTree
 " NERDTree Toggle shortcut
-map <C-n> :NERDTreeToggle<CR><C-w>=
+map <C-_> :NERDTreeToggle<CR><C-w>=
 " Auto delete buffer
 let NERDTreeAutoDeleteBuffer=1
 " Auto CWD
@@ -336,7 +336,9 @@ let NERDTreeMapJumpFirstChild='gk'
 " so that I can use vim-sneak within NT
 let NERDTreeMapOpenVSplit='<C-v>'
 " New tab to open new project
-noremap <Leader>n :tabe<CR>:NERDTree 
+noremap <Leader>nn :NERDTree ~/
+noremap <Leader>ndl :NERDTree ~/Downloads/
+noremap <Leader>ndp :NERDTree ~/Dropbox/
 " }}}
 
 " vim-easy-align {{{
@@ -363,8 +365,7 @@ nnoremap <Leader>i :IndentLinesToggle<CR>
 " }}}
 
 " vim-multiple-cursors {{{
-let g:multi_cursor_next_key='<C-d>'
-let g:multi_cursor_prev_key='<C-u>'
+" use default <C-n> <C-p>
 " }}}
 
 " delimitMate {{{
