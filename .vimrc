@@ -27,7 +27,7 @@ if has('python') || has('python3')
   Plug 'SirVer/UltiSnips'           " snippet plugin
   Plug 'honza/vim-snippets'         " preconfigured snippet package
 endif
-Plug 'mattn/emmet-vim'              " emmet
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'} " simpler emmet
 Plug 'terryma/vim-multiple-cursors' " multiple cursor
 Plug 'Raimondi/delimitMate'         " closing brackets
 Plug 'lfilho/cosco.vim'             " smart comma, semicolon
@@ -180,12 +180,10 @@ nnoremap <C-s> i<CR><Esc>^mwgk:silent! s/\v +$//<CR>:noh<CR>
 " big J / K travel 10 lines
 noremap J 10j
 noremap K 10k
-noremap ∆ <C-d>
-noremap ˚ <C-u>
 
-" big H / L to beginning / end of line, use Leader instead
-noremap H ^
-noremap L $
+" Ctrl h / l for easy beginning / end of line
+noremap <C-h> ^
+noremap <C-l> $
 
 " - quick go to line, Enter for EOL
 noremap - gg
@@ -230,8 +228,7 @@ set pastetoggle=<F9>
 " noremap <C-p> "+p
 
 " habits
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
+" use C-o,C-h / C-l instead
 
 " circular windows navigation
 nnoremap <Tab>   <c-W>w
@@ -248,10 +245,6 @@ inoremap <F5> <C-R>=strftime("%c")<CR>
 " ---------------------------------------------------------------------------
 
 let mapleader = " "     " space leader
-
-" Leader h / l for beginning / end of line
-noremap <leader>h H
-noremap <leader>l L
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
@@ -395,8 +388,8 @@ let g:sneak#streak=1
 if has('gui_running')
   set relativenumber
   " More comfortable scroll
-  noremap <D-j> <C-d>
-  noremap <D-k> <C-u>
+  noremap <D-j> 10jzz
+  noremap <D-k> 10kzz
   " Sublime style comment
   noremap <D-/> :Commentary<CR>
 
