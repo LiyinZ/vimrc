@@ -32,6 +32,7 @@ Plug 'terryma/vim-multiple-cursors' " multiple cursor
 Plug 'Raimondi/delimitMate'         " closing brackets
 Plug 'lfilho/cosco.vim'             " smart comma, semicolon
 Plug 'justinmk/vim-sneak'           " slim easy motion
+Plug 'unblevable/quick-scope'       " helpful highlights for fFtT
 " Plug 'Valloric/YouCompleteMe'       " code completion engine
 " Plug 'wellle/targets.vim'           " new and improved text objects
 " Plug 'junegunn/vim-github-dashboard'" browse GitHub events on vim
@@ -380,6 +381,33 @@ autocmd FileType javascript,css inoremap <silent> <C-z> <c-o>:call cosco#commaOr
 let g:sneak#streak=1
 " }}}
 
+" quick-scope {{{
+" only enable the quick-scope plugin's
+" highlighting when using the f/F/t/T movements.
+" ^ credit to cszentkiralyi and VanLaser
+let g:qs_enable = 0
+let g:qs_enable_char_list = [ 'f', 'F', 't', 'T' ]
+function! Quick_scope_selective(movement)
+  let needs_disabling = 0
+  if !g:qs_enable
+    QuickScopeToggle
+    redraw
+    let needs_disabling = 1
+  endif
+  let letter = nr2char(getchar())
+  if needs_disabling
+    QuickScopeToggle
+  endif
+  return a:movement . letter
+endfunction
+for i in g:qs_enable_char_list
+  execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
+endfor
+" }}}
+
+for i in g:qs_enable_char_list
+	execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
+endfor
 
 " }}}
 " ===========================================================================
