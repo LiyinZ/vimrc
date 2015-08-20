@@ -35,7 +35,6 @@ Plug 'justinmk/vim-sneak'           " slim easy motion
 Plug 'unblevable/quick-scope'       " helpful highlights for fFtT
 " Plug 'Valloric/YouCompleteMe'       " code completion engine
 " Plug 'wellle/targets.vim'           " new and improved text objects
-" Plug 'junegunn/vim-github-dashboard'" browse GitHub events on vim
 Plug 'tpope/vim-fugitive'           " Git integration
 " Plug 'tpope/vim-unimpaired'         " many helpful mappings
 
@@ -47,7 +46,6 @@ Plug 'jelera/vim-javascript-syntax' " Enhanced JS
 
 " *AESTHETIC PLUGINS*
 Plug 'kristijanhusak/vim-hybrid-material' " material theme
-" Plug 'NLKNguyen/papercolor-theme'   " paper theme dark & light
 Plug 'itchyny/lightline.vim'        " better looking UI
 Plug 'Yggdroot/indentLine'          " shows indents made of spaces
 
@@ -411,9 +409,9 @@ endfor
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gD :Gdiff HEAD<cr>
-nnoremap <leader>ga. :Git add .<cr>
+nnoremap <leader>ga :Git add 
 nnoremap <leader>gc :Gcommit<cr>
-nnoremap <leader>gl :Git log
+nnoremap <leader>gl :Git log -
 nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>gr :Gremove<cr>
