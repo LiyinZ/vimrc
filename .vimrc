@@ -143,6 +143,9 @@ augroup vimrcEx
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
+
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent loadview
 augroup END
 " }}}
 
@@ -156,9 +159,6 @@ augroup END
 " ---------------------------------------------------------------------------
 " REMAPS OF DEFAULTS {{{
 " ---------------------------------------------------------------------------
-
-" ctrl k for kill window (disabled, use macvim <D-w>)
-" noremap <C-k> <c-W>c
 
 " Y yanks until EOL, more like D and C
 nnoremap Y y$
@@ -222,12 +222,6 @@ nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"
 " F9 to toggle paste mode
 set pastetoggle=<F9>
 
-" vim paste " use cmd-v in macvim
-" noremap <C-p> "+p
-
-" habits
-" use C-o,C-h / C-l instead
-
 " circular windows navigation
 nnoremap <Tab>   <c-W>w
 nnoremap <Backspace> <c-W>W
@@ -262,6 +256,16 @@ nnoremap <Leader>B :ls<CR>:bd!<Space>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :qa<CR>
 
+function! HandleURL()
+  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+  echo s:uri
+  if s:uri != ""
+    silent exec "!open '".s:uri."'"
+  else
+    echo "No URI found in line."
+  endif
+endfunction
+noremap <leader>u :call HandleURL()<cr>
 
 " }}}
 " ---------------------------------------------------------------------------
@@ -281,10 +285,6 @@ cabbrev bdall 0,999bd!
 " ===========================================================================
 " PLUGIN SETTINGS {{{
 " ===========================================================================
-
-" Fugitive {{{
-" don't need them for now since i use ctrl d switch to shell
-" }}}
 
 " CtrlP {{{
 " ignore .git folders to speed up searches
@@ -311,8 +311,6 @@ nnoremap <Leader>G :Goyo<CR>
 " disable netrw use nerdtree instead
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
-" open a NERDTree automatically when vim starts up
-autocmd vimenter * NERDTree
 " NERDTree Toggle shortcut
 map <C-_> :NERDTreeToggle<CR><C-w>=
 " Auto delete buffer
@@ -332,6 +330,7 @@ let NERDTreeMapOpenVSplit='<C-v>'
 noremap <Leader>nn :NERDTree ~/
 noremap <Leader>ndl :NERDTree ~/Downloads/
 noremap <Leader>ndp :NERDTree ~/Dropbox/
+noremap <Leader>no :NERDTree ~/Dropbox/Notes<CR>
 " }}}
 
 " vim-easy-align {{{
@@ -345,20 +344,11 @@ nmap ga <Plug>(EasyAlign)
 nnoremap <Leader>i :IndentLinesToggle<CR>
 " }}}
 
-" lightline {{{
-" toggle lightline
-" nnoremap <silent> <Leader>L :exec lightline#toggle()<CR>
-" }}}
-
 " Syntastic {{{
 " opens errors in the location list
-" nnoremap <Leader>e :Errors<CR>
+nnoremap <Leader>rr :Errors<CR>
 " reset Syntastic (clears errors)
-" nnoremap <Leader>r :SyntasticReset<CR>
-" }}}
-
-" vim-multiple-cursors {{{
-" use default <C-n> <C-p>
+nnoremap <Leader>rs :SyntasticReset<CR>
 " }}}
 
 " delimitMate {{{
@@ -371,13 +361,14 @@ inoremap <C-l> <C-o>A;<Esc>
 
 " cosco.vim {{{
 " ctrl z for smart semi colons
-autocmd FileType javascript,css nnoremap <silent> <C-z> :call cosco#commaOrSemiColon()<CR>
-autocmd FileType javascript,css inoremap <silent> <C-z> <c-o>:call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css nnoremap <silent> <C-k> :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css inoremap <silent> <C-k> <c-o>:call cosco#commaOrSemiColon()<CR>
 " }}}
 
 " vim-sneak {{{
 " Emulate easyMotion
 let g:sneak#streak=1
+" let g:sneak#use_ic_scs=1
 " }}}
 
 " Fugitive {{{
@@ -404,6 +395,8 @@ if has('gui_running')
   " Sublime style comment
   noremap <D-/> :Commentary<CR>
 
+  " open a NERDTree automatically when mvim starts up
+  autocmd vimenter * NERDTree
 endif
 " }}}
 " ===========================================================================
